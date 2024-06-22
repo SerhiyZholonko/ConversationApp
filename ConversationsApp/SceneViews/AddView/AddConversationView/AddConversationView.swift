@@ -15,24 +15,32 @@ struct AddConversationView: View {
     @EnvironmentObject var viewModel: AddViewViewModel
     @State var isAiView: Bool = true
     @State private var selectedSegment: Int = 1
-
+    
     var body: some View {
-        ScrollView {
+      
             VStack {
                 SegmentedControlView(isAiView: $isAiView)
-                
-                    if isAiView {
-                        withAnimation {
-                        AIView(selectionLevel: $selectionLevel, selection: $selection, titleText: $titleText, tagText: $tagText)
+                if isAiView {
+                    withAnimation {
+                        ScrollView {
+                            
+                            AIView(selectionLevel: $selectionLevel, selection: $selection, titleText: $titleText, tagText: $tagText)
+                        }
                     }
                 }
-               
-               Spacer()
+                else {
+                    withAnimation {
+                       
+                        ManualView(selectionLanguage1: .constant("English 🇬🇧"), selectionLanguage2: .constant("Ukraine 🇺🇦") )
+                        
+                       
+                    }
+                
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-     
-      
+        
+        
     }
 }
 

@@ -27,7 +27,7 @@ struct DropDownView: View {
                     Spacer(minLength: 0)
                     Image (systemName: "chevron.down")
                         .font(. title3)
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(.select)
                         .rotationEffect(.init(degrees: showOptions ? -180 : 0))
                 }
                 .padding(.horizontal, 15)
@@ -41,7 +41,7 @@ struct DropDownView: View {
                 }
             }
             .clipped()
-            .background((scheme == .dark ? Color.black : Color.white).shadow(.drop(color: .primary.opacity(0.15), radius: 4)), in: .rect(cornerRadius: cornerRadius))
+            .background((scheme == .dark ? Color.black : Color.white).shadow(.drop(color: .select.opacity(0.15), radius: 4)), in: .rect(cornerRadius: cornerRadius))
         }
         .frame (width: maxWidth, height: 50)
     }
