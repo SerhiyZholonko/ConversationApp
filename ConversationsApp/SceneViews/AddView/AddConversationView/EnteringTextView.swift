@@ -53,7 +53,7 @@ Spacer()
         }
             
         ZStack {
-            TextField("Please add some sentence.", text: $text)
+            TextField("Please add some.", text: $text)
                 .frame(width: 250, height: 48)
                 .padding(.leading)
                 .padding(.trailing, 110)
