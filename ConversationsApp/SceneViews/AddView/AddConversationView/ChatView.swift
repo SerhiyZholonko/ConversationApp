@@ -27,6 +27,8 @@ struct ChatView: View {
     @State private var newMessage: String = ""
     @State private var isShowingView = true
     @State private var selectedMessage: Message?
+    @State private var isShowingMessage = false
+
     
     @Namespace var namespace
     
@@ -49,8 +51,11 @@ struct ChatView: View {
                                         .matchedGeometryEffect(id: message.id, in: namespace)
                                         .onTapGesture {
                                             selectedMessage = message
+                                            
                                             withAnimation {
-                                                isShowingView.toggle()
+                                                
+                                                    isShowingView.toggle()
+                                                
                                             }
                                         }
                                     if !message.isUser {
@@ -64,6 +69,22 @@ struct ChatView: View {
                 } else {
                     if let selectedMessage = selectedMessage {
                         VStack {
+                            HStack {
+                                Spacer()
+                                Button {
+                                    withAnimation {
+                                            isShowingView.toggle()
+                                    }
+                                } label: {
+                                    Image(systemName: "xmark")
+                                        .resizable()
+                                        .frame(width: 32, height: 32)
+                                        .foregroundColor(selectedMessage.isUser ? .select : .second)
+                                        .padding()
+                                        
+                                }
+
+                            }
                             Text(selectedMessage.text)
                                 .padding()
                                 .foregroundColor(.white)
@@ -72,11 +93,7 @@ struct ChatView: View {
                                 .cornerRadius(10)
                                 
                                 .frame(width: 350)
-                                .onTapGesture {
-                                    withAnimation {
-                                        isShowingView.toggle()
-                                    }
-                                }
+                             
                             
                             Spacer()
                         }

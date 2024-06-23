@@ -11,7 +11,7 @@ struct EnteringTextView: View {
     @Binding var text: String
     @State var isAddFile: Bool = false
     var body: some View {
-        VStack {
+        VStack(spacing: isAddFile ? 8 : 0) {
 Spacer()
         HStack {
             Spacer()
@@ -25,7 +25,6 @@ Spacer()
                         .resizable()
                         .frame(width: isAddFile ? 32 : 48, height: isAddFile ? 12 : 48)
                 })
-                .padding(.bottom)
                 
                 VStack {
                     Button(action: {
@@ -49,7 +48,7 @@ Spacer()
                 
             }
             .foregroundColor(Color.select)
-           .padding(.horizontal)
+           .padding(.horizontal, 8)
             
         }
             

@@ -14,6 +14,7 @@ struct DropDownView: View {
     var anchor: Anchor = .bottom
     var maxWidth: CGFloat = 250
     var cornerRadius: CGFloat = 15
+    var font: Font = .title3
     @Binding var selection: String?
     @State private var showOptions: Bool = false
     @Environment(\.colorScheme) private var scheme
@@ -22,6 +23,7 @@ struct DropDownView: View {
             VStack(spacing: 0){
                 HStack(spacing: 0) {
                     Text (selection ?? hint)
+                        .font(.caption)
                         .foregroundStyle(selection == nil ? .gray : .primary)
                         .lineLimit(1)
                     Spacer(minLength: 0)
@@ -70,4 +72,16 @@ struct DropDownView: View {
         .padding(.horizontal)
         .transition(.move(edge: .top))
     }
+}
+
+#Preview {
+    DropDownView(
+        hint: "elementary A1", options: [
+            "elementary A1",
+            "elementary A2",
+            "intermediate B1",
+            "intermediate B2",
+            "advanced C1"],
+        selection: .constant("elementary A1"))
+
 }
